@@ -65,7 +65,7 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/754e36b5-beb0-440e-ae01-68f6db498e2f">
   4. Right-click the domain controller we created and click on **Configure and Enable Routing and Remote Access**.
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/0faa255c-bfef-44d0-b2f7-8b60a4be5232">
-  5. Select **Network address translation (NAT)**, and make sure **Use this public interface to connect to the internet** radio button is selected. If not, then close all the Routing and Remote Access windows and reopen them again
+  5. Select **Network address translation (NAT)**, and make sure **Use this public interface to connect to the internet** radio button is selected. If not, then close all the Routing and Remote Access windows and reopen them again.
   6. When the radio button is selected, select the Internet adapter.
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/de58a563-50e3-484b-b133-ca1b9518a6e5">
   7. Finish the configuration.
@@ -75,7 +75,7 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
 ## Step 8: Set Up DHCP Server
   1. Open "Add Roles and Features" once more.
   2. Choose DHCP Server in the Server Roles section and install.
-  3. Open DHCP.
+  3. Open DHCP.                              
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/7c3a7200-eef3-476c-83e7-6b310aca1eca">
   4. Configure a new scope for IPv4.
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/af9541ed-ce9e-43d7-a9f0-b3a47e2e6deb">
