@@ -48,19 +48,29 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
 
   6. In the VM, sign out and sign in as the admin account we just created to verify it works. <img width="585" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/721fcae8-28dd-4597-b425-f78ef2723d02">
 
-  The next thing we will do is install RAS and NAT so it is still in a private network, but it can also connect to the internet.
+  Next, we will install RAS and NAT so it is still in a private network but can connect to the internet.
 
 ## Step 7: Install Remote Access Server (RAS) and NAT
-  1. Open "Add Roles and Features" again.
-  2. Choose Remote Access and install Routing and Remote Access.
-  3. Open Routing and Remote Access, configure NAT, and use the internet interface.
-  4. Finish the configuration.
+  1. In Server Manager, open "Add Roles and Features" again.
+  2. Choose Remote Access in the Server Roles section and install Routing in the Role Services section.
+  3. Open Routing and Remote Access. <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/754e36b5-beb0-440e-ae01-68f6db498e2f">
+  4. Right-click the domain controller we created and click on **Configure and Enable Routing and Remote Access**. <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/0faa255c-bfef-44d0-b2f7-8b60a4be5232">
+  5. Select **Network address translation (NAT)**, and make sure **Use this public interface to connect to the internet** radio button is selected. If not, then close all the Routing and Remote Access windows and reopen them again
+  6. When the radio button is selected, select the Internet adapter. <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/de58a563-50e3-484b-b133-ca1b9518a6e5">
+  7. Finish the configuration.
+
+  Next, we will configure DHCP for the users so they can access the internet.
+
 ## Step 8: Set Up DHCP Server
   1. Open "Add Roles and Features" once more.
-  2. Choose DHCP Server and install.
-  3. Open DHCP Manager and configure a new scope.
-  4. Set up the DHCP scope information for internal clients.
-  5. Complete the DHCP server setup.
+  2. Choose DHCP Server in the Server Roles section and install.
+  3. Open DHCP. <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/7c3a7200-eef3-476c-83e7-6b310aca1eca">
+  4. Configure a new scope for IPv4. <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/af9541ed-ce9e-43d7-a9f0-b3a47e2e6deb">
+  5. Set up the DHCP scope information for internal clients; we want to have about 100 devices for this project and set the Lease Duration to something like 8 days (This is how long the IP address will last until it is renewed). <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/f51aa288-efdc-46e3-a6a2-68b600ec9e58">
+  6. Make sure **Yes, I want to configure these options now** and click next. Then, we want to set it to the domain controller IP address for the Router default gateway and make sure to click **Add**. Add it again on the next page (Domain Name and DNS Servers). <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/61d5ce92-5c15-4388-8742-12bce3d92f84">
+  7. Complete the DHCP server setup.
+  8. Go to the domain controller, right-click and click Authorize, and then do that again and click Refresh, which should make the IPv4 and IPv6 icons green. <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/b9b8e0a6-4045-48dc-bd90-f74d31e161ec">
+
 ## Step 9: Run PowerShell Script to Create Users
   1. Use the provided link to download the PowerShell script for creating users.
   2. Disable Internet Explorer Enhanced Security on the domain controller.
