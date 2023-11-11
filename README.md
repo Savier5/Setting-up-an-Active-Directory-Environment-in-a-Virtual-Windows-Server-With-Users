@@ -82,31 +82,30 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
       <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/b9b8e0a6-4045-48dc-bd90-f74d31e161ec">
 ## Step 9: Run PowerShell Script to Create Users
   1. Download the folder with the PowerShell script to create users and random users in a text file. You can do this by going to a web browser on the VM, opening the project's GitHub page, and downloading it. Extract the folder and put it on the desktop.
-  2. Open Windows PowerShell ISE as an administrator and then open the script there. Take some time to read through the script; this script was provided with the help of joshmadakor1. It basically goes through the names in the name.txt file and adds them as a non-admin user in AD.
+  2. Open Windows PowerShell ISE as an administrator and then open the script there. Take some time to read through the script; this script was provided with the help of joshmadakor1. It basically goes through the names in the name.txt file, adds them as a non-admin user in AD, and then sets all the user's passwords to "Password1". We just did that for this project, and it is not recommended that all users use the same user; each user should use a different password.
   3. In Powershell, type "Set-ExecutionPolicy Unrestricted" so we can run the script without restrictions.
   4. Go to File Explorer, find the path to the folder with the two files we downloaded, and copy the path. Then, type "cd " in the Powershell terminal and paste the path to set the script path there.
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/1fcae0dd-29ad-4b9d-bff2-2d8e6e1b5dc4">
   5. Execute the PowerShell script to create a batch of sample users in Active Directory. (Some users might be duplicates and might show errors for them when the script is running).
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/45a8d040-a941-4dff-84e8-1d13dae0b11a">
-## Step 10: Configure Internet Browsing on Domain Controller
-  1. Disable Internet Explorer Enhanced Security on the domain controller.
-  2. Modify the configuration to allow normal internet browsing.
-## Step 11: Create Windows 10 Virtual Machine
+  If you open Active Directory Users and Computers, open your domain, then open _USERS, you will see all the users we inputted into AD.
+## Step 10: Create Windows 10 Virtual Machine
   1. Open VirtualBox and create a new virtual machine for Windows 10.
-  2. Configure settings, allocate resources, and set up an internal network adapter.
+     <img width="617" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/72115e34-6d69-4fb4-a38d-560a98a40ae8">
+  2. Configure settings, allocate resources and set up an internal network adapter for the first adapter.
   3. Install Windows 10 using the ISO file.
   4. Complete the setup process.
-## Step 12: Verify DHCP and Internet Connectivity on Windows 10
+## Step 11: Verify DHCP and Internet Connectivity on Windows 10
   1. Check DHCP lease on the domain controller for the Windows 10 virtual machine.
   2. Verify internet connectivity on the Windows 10 virtual machine by pinging external hosts.
-## Step 13: Join Windows 10 to the Domain
+## Step 12: Join Windows 10 to the Domain
   1. Change the Windows 10 computer name to match the network diagram.
   2. Join the Windows 10 virtual machine to the domain (mydomain.com).
   3. Use a domain user account to log in.
-## Step 14: Check Active Directory and DHCP on Domain Controller
+## Step 13: Check Active Directory and DHCP on Domain Controller
   1. Verify the creation of the computer account in Active Directory for the Windows 10 machine.
   2. Check the DHCP leases on the domain controller to confirm the assignment of an IP address to the Windows 10 machine.
-## Step 15: Explore Windows 10 Virtual Machine
+## Step 14: Explore Windows 10 Virtual Machine
   1. Log in to the Windows 10 virtual machine using domain credentials.
   2. Check the system information to confirm domain membership.
   3. Explore the Windows 10 environment and ensure proper functionality.
