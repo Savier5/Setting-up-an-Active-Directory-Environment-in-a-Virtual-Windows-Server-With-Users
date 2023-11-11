@@ -2,6 +2,9 @@
 
 This project employs VirtualBox for virtualization and Windows 10/Windows Server 2022 ISOs for VM foundation. After installation and configuration, it progresses through Active Directory setup, introducing components like a Remote Access Server (RAS), NAT, and a DHCP Server. PowerShell scripts facilitate user creation, and adjustments are made for internet browsing. The creation of a Windows 10 VM follows, with subsequent steps verifying DHCP leases and ensuring internet connectivity.
 
+<img width="1280" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/b410b9b5-bac6-4186-8915-5bd12797636c">
+
+
 ## Step 1: Download and Install VirtualBox
   1. Visit the VirtualBox website to download it: https://www.virtualbox.org/wiki/Downloads
   2. Download the appropriate version for your operating system (Windows or Mac).
@@ -93,19 +96,17 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
   1. Open VirtualBox and create a new virtual machine for Windows 10.
      <img width="617" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/72115e34-6d69-4fb4-a38d-560a98a40ae8">
   2. Configure settings, allocate resources and set up an internal network adapter for the first adapter.
-  3. Install Windows 10 using the ISO file.
-  4. Complete the setup process.
-## Step 11: Verify DHCP and Internet Connectivity on Windows 10
-  1. Check DHCP lease on the domain controller for the Windows 10 virtual machine.
-  2. Verify internet connectivity on the Windows 10 virtual machine by pinging external hosts.
-## Step 12: Join Windows 10 to the Domain
-  1. Change the Windows 10 computer name to match the network diagram.
-  2. Join the Windows 10 virtual machine to the domain (mydomain.com).
-  3. Use a domain user account to log in.
-## Step 13: Check Active Directory and DHCP on Domain Controller
-  1. Verify the creation of the computer account in Active Directory for the Windows 10 machine.
-  2. Check the DHCP leases on the domain controller to confirm the assignment of an IP address to the Windows 10 machine.
-## Step 14: Explore Windows 10 Virtual Machine
+  3. Install Windows 10 using the ISO file, and choose Windows 10 Pro if it is an option when setting up the VM, as we know that version can join domains.
+  4. When asked, click on I don't have internet, Continue with limited setup and complete the setup process.
+## Step 11: Join Windows 10 to the Domain
+  1. Go to the Windows icon in the taskbar, right-click it, and open Systems. In there, scroll down or to the right side to find and open Rename this PC (advanced). Click on Change, then rename the computer name and select the Domain radio button, entering the domain (e.g., mydomain.com).
+  2. Use a domain user account in AD to log in. The password will be the password we talked about previously (Password1). Then, you'll be asked to restart the VM.
+     <img width="1280" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/448c2107-9013-4d95-a183-f8895284fb17">
+## Step 12: Explore Windows 10 Virtual Machine
   1. Log in to the Windows 10 virtual machine using domain credentials.
+     <img width="1280" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/221a661d-a73d-4423-a6c9-6528579c798b">
   2. Check the system information to confirm domain membership.
+     <img width="1280" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/cc06e331-5cd2-4eba-8aa5-c29589e3f8b3">
   3. Explore the Windows 10 environment and ensure proper functionality.
+
+In this comprehensive project, you've successfully orchestrated the setup of a virtualized Windows Server environment, mastering key technologies along the way. Starting with VirtualBox installation and Windows OS downloads, you crafted virtual machines, installed Windows Server 2019, and configured Active Directory services. Your journey continued with essential tasks like creating domain admin accounts, installing Remote Access Server and NAT, setting up a DHCP server, and executing PowerShell scripts for user creation. Finally, you seamlessly integrated a Windows 10 client, ensuring DHCP, internet connectivity, and Active Directory functionality.
