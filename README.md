@@ -1,30 +1,36 @@
 # Setting up an Active Directory Environment in a Virtual Windows Server With Users
 
-This project employs VirtualBox for virtualization and Windows 10/Windows Server 2019 ISOs for VM foundation. After installation and configuration, it progresses through Active Directory setup, introducing components like a Remote Access Server (RAS), NAT, and a DHCP Server. PowerShell scripts facilitate user creation, and adjustments are made for internet browsing. The creation of a Windows 10 VM follows, with subsequent steps verifying DHCP leases and ensuring internet connectivity. The project concludes with exploration of the Windows 10 VM.
+This project employs VirtualBox for virtualization and Windows 10/Windows Server 2022 ISOs for VM foundation. After installation and configuration, it progresses through Active Directory setup, introducing components like a Remote Access Server (RAS), NAT, and a DHCP Server. PowerShell scripts facilitate user creation, and adjustments are made for internet browsing. The creation of a Windows 10 VM follows, with subsequent steps verifying DHCP leases and ensuring internet connectivity.
 
 ## Step 1: Download and Install VirtualBox
-  1. Visit the VirtualBox download link in the description.
+  1. Visit the VirtualBox website to download it: https://www.virtualbox.org/wiki/Downloads
   2. Download the appropriate version for your operating system (Windows or Mac).
   3. Install VirtualBox.
   4. Download the VirtualBox Extension Pack after the installation.
-## Step 2: Download Windows 10 and Windows Server 2019 ISOs
-  1. Follow the link in the description to download Windows 10.
+     ![image](https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/a1f1875d-708f-4f29-bdd8-e09c212be0af)
+## Step 2: Download Windows 10 and Windows Server 2022 ISOs
+  1. Follow the link to download Windows 10: https://www.microsoft.com/en-us/software-download/windows10#d2784474-fdb0-4e9d-9e47-5e88c0e053ec
   2. Fill out the necessary information (language, version) and download the 64-bit ISO.
-  3. Repeat the process for Windows Server 2019, selecting ISO format.
+  3. Repeat the process for Windows Server 2022, selecting ISO format: [https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022)
   4. Remember where you save both downloads.
 ## Step 3: Create Virtual Machines in VirtualBox
   1. Open VirtualBox and click "New" to create a new virtual machine.
-  2. Name it (e.g., dc for domain controller), choose OS (Other, Windows 64-bit), and allocate RAM (e.g., 2GB).
+  2. Name it (e.g., dc for domain controller), choose OS (Other, Windows 64-bit) (Note: check the **Skip Unattended Installation** checkbox, as this can cause issues if it's not checked), adjust the processor settings (e.g., 4 cores), and allocate RAM (e.g., 2GB).
   3. Create a virtual hard disk with default settings.
   4. Open settings, go to Advanced, enable bi-directional for clipboard and drag-and-drop.
-  5. In System, adjust the processor settings (e.g., 4 cores).
-  6. In Network, add a second adapter for internal networking.
-  7. Start the virtual machine and select the Windows Server 2019 ISO to boot from.
-## Step 4: Install Windows Server 2019
-  1. Install Windows Server 2019 with the desired settings (Desktop Experience recommended).
-  2. Configure network settings (one adapter for internet, one for internal).
-  3. Install VirtualBox Guest Additions for better integration.
-  4. Shut down and restart the virtual machine.
+  5. In Network, leave the first adapter as NAT, and add a second adapter for internal networking.
+  6. Start the virtual machine and select the Windows Server 2022 ISO to boot from.
+## Step 4: Install Windows Server 2022
+  1. Install Windows Server 2022 with the desired settings (any of the Desktop Experience is recommended).
+  2. Go to **Devices** in VirtualBox and then click **Insert Guest Additions CD image...**    <img width="513" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/07614fec-221e-4644-93c8-512f5bd7023e">
+  3. Go to File Explorer, This PC, and open VirtualBox Guest Additions                        <img width="513" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/393b6c23-b265-481a-9841-66da1679be34">
+  4. Run VBoxWindowsAdditions-amd64 and follow the setup, clicking next.
+  5. Shut down the virtual machine and restart the virtual machine from VirtualBox.
+  6. Rename the adapters to correctly represent what they are (one adapter for the internet (Make sure this one is connected to the internet), one for internal (Having an IPv4 of 169.254....)).                                                                      <img width="513" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/93d4f623-f59b-428e-a534-c5e41f2d40b5">
+  7. Go to the Internal adapter and change IPv4 IP address to this:
+     ![image](https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/7543f18d-3837-4933-9a5f-c670c5474d7b)
+  8. Rename the PC to DomainController.
+  9. Shut down the virtual machine and restart the virtual machine from VirtualBox.
 ## Step 5: Configure Active Directory
   1. Open "Add Roles and Features" in Server Manager.
   2. Choose Active Directory Domain Services and install.
