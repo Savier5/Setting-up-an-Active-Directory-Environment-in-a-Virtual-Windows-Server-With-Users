@@ -8,7 +8,6 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
   3. Install VirtualBox.
   4. Download the VirtualBox Extension Pack after the installation.
      ![image](https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/a1f1875d-708f-4f29-bdd8-e09c212be0af)
-     
 ## Step 2: Download Windows 10 and Windows Server 2022 ISOs
   1. Follow the link to download Windows 10: https://www.microsoft.com/en-us/software-download/windows10#d2784474-fdb0-4e9d-9e47-5e88c0e053ec
   2. Fill out the necessary information (language, version) and download the 64-bit ISO.
@@ -49,15 +48,12 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
   3. Create an Organizational Unit (OU) for admins.
   4. Create a new user account for admin purposes.
      <img width="513" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/80091505-477d-4d73-92d6-777649f1865d">
-
   5. Make the user a member of the Domain Admins group.
      <img width="585" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/3f38d820-2441-466f-8265-4d428ec9540c">
 
   6. In the VM, sign out and sign in as the admin account we just created to verify it works.
      <img width="585" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/721fcae8-28dd-4597-b425-f78ef2723d02">
-
   Next, we will install RAS and NAT so it is still in a private network but can connect to the internet.
-
 ## Step 7: Install Remote Access Server (RAS) and NAT
   1. In Server Manager, open "Add Roles and Features" again.
   2. Choose Remote Access in the Server Roles section and install Routing in the Role Services section.
@@ -69,9 +65,7 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
   6. When the radio button is selected, select the Internet adapter.
      <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/de58a563-50e3-484b-b133-ca1b9518a6e5">
   7. Finish the configuration.
-
   Next, we will configure DHCP for the users so they can access the internet.
-
 ## Step 8: Set Up DHCP Server
   1. Open "Add Roles and Features" once more.
   2. Choose DHCP Server in the Server Roles section and install.
@@ -86,11 +80,14 @@ This project employs VirtualBox for virtualization and Windows 10/Windows Server
   7. Complete the DHCP server setup.
   8. Go to the domain controller, right-click and click Authorize, and then do that again and click Refresh, which should make the IPv4 and IPv6 icons green.
       <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/b9b8e0a6-4045-48dc-bd90-f74d31e161ec">
-
 ## Step 9: Run PowerShell Script to Create Users
-  1. Use the provided link to download the PowerShell script for creating users.
-  2. Disable Internet Explorer Enhanced Security on the domain controller.
-  3. Execute the PowerShell script to create a batch of sample users in Active Directory.
+  1. Download the folder with the PowerShell script to create users and random users in a text file. You can do this by going to a web browser on the VM, opening the project's GitHub page, and downloading it. Extract the folder and put it on the desktop.
+  2. Open Windows PowerShell ISE as an administrator and then open the script there. Take some time to read through the script; this script was provided with the help of joshmadakor1. It basically goes through the names in the name.txt file and adds them as a non-admin user in AD.
+  3. In Powershell, type "Set-ExecutionPolicy Unrestricted" so we can run the script without restrictions.
+  4. Go to File Explorer, find the path to the folder with the two files we downloaded, and copy the path. Then, type "cd " in the Powershell terminal and paste the path to set the script path there.
+     <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/1fcae0dd-29ad-4b9d-bff2-2d8e6e1b5dc4">
+  5. Execute the PowerShell script to create a batch of sample users in Active Directory. (Some users might be duplicates and might show errors for them when the script is running).
+     <img width="586" alt="image" src="https://github.com/Savier5/Setting-up-an-Active-Directory-Environment-in-a-Virtual-Windows-Server-With-Users/assets/55478673/45a8d040-a941-4dff-84e8-1d13dae0b11a">
 ## Step 10: Configure Internet Browsing on Domain Controller
   1. Disable Internet Explorer Enhanced Security on the domain controller.
   2. Modify the configuration to allow normal internet browsing.
